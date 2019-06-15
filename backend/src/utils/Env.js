@@ -1,4 +1,4 @@
-const server = "http://localhost:3000/";
+const server = "https://samples.openweathermap.org/data/2.5/forecast";
 
 /**
  * Returns the dev ser constant.

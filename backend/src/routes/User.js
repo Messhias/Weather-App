@@ -8,15 +8,16 @@ UserRouter.use(cors());
 UserRouter.use(express.json());
 
 // importing the custom functions.
-import {verifyJWT, jwt} from "../utils/JWT";
+import { jwt } from "../utils/JWT";
+
+// retrieving the AppStore
+import AppStore from '../store/AppStore';
 
 /**
  * Login route
  *
  * @return mixed
  */
-
-// Access the parse results as request.body
 UserRouter.route("/login").post(function(request, response){
     console.log(request.body);
 
@@ -25,6 +26,7 @@ UserRouter.route("/login").post(function(request, response){
             //auth ok
             const id = 1; // user id
             const token = jwt.sign({ id }, process.env.SECRET, {expiresIn: 300 });
+            AppStore.setUser({ auth: true, token: token });
             response.status(200).send({ auth: true, token: token });
         }
     } else {
@@ -40,13 +42,8 @@ UserRouter.route("/login").post(function(request, response){
  * @return mixed
  */
 UserRouter.get('/logout', function(request, response) {
+    AppStore.setUser(null);
     response.status(200).send({ auth: false, token: null });
-});
-
-
-// Proxy requestuest
-UserRouter.get('/users', verifyJWT, (request, response, next) => {
-
 });
 
 module.exports = UserRouter;
