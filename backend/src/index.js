@@ -1,8 +1,22 @@
-// index.js
+require("dotenv-safe").load();
+const http = require('http');
 const express = require('express');
 const app = express();
-app.get('/', (req, res) =>  {
-    console.log('I just received a GET request on port 3000!');
-    res.send('Hello World!');
-});
-app.listen(3000, () => console.log('I just connected on port 3000!'));
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
+const helmet = require('helmet');
+
+// importing the routes
+import User from './routes/User';
+
+app.use(logger('dev'));
+app.use(helmet());
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+app.use(cookieParser());
+
+// Proxy requests
+app.use(User);
+
+const server = http.createServer(app);
+server.listen(3000);
