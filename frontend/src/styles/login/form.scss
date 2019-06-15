@@ -1,0 +1,29 @@
+.login-container {
+    div {
+        margin-top: 40px;
+    }
+
+    input {
+        border: none;
+        border-bottom: 1px solid $blue3;
+        margin-top: 20px;
+        color: $blue3;
+        font-weight: bolder;
+    }
+
+    button {
+        border: none;
+        flex-direction: row;
+        justify-content: right;
+        color: $blue3;
+        font-weight: bolder;
+        float: right;
+        font-size: 1em;
+        cursor: pointer;
+    }
+
+    label {
+        position: absolute;
+        font-size: 10px;
+    }
+}

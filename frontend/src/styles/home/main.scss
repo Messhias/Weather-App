@@ -1,0 +1,15 @@
+.home-page-container {
+    p {
+        color: $blue3;
+        a {
+            text-decoration: none;
+            text-transform: none !important;
+            svg {
+                cursor: pointer;
+                path {
+                    color: $green;
+                }
+            }
+        }
+    }
+}

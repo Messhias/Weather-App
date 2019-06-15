@@ -1,0 +1,31 @@
+@import "variables";
+
+// importing fonts
+@import url("https://fonts.googleapis.com/css?family=Roboto|Roboto+Condensed|Roboto+Mono|Roboto+Slab&display=swap");
+
+// importing the styles
+@import "login/main";
+@import "home/main";
+
+* {
+    background: $background;
+    font-family: Roboto, sans-serif;
+    color: $blue2;
+    font-size: 1.1em;
+}
+
+#wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    min-height: 100vh;
+    text-transform: uppercase;
+
+    .page-not-found {
+        p {
+            color: $blue3;
+        }
+    }
+}
