@@ -28,6 +28,12 @@ Go to the directory application
 
 ```
 docker-compose up -d
+```
+
+Run the ***tables.sql***  in your database (you can do in a lot ways),
+ but I suggest you use some database managers system.
+
+```
 <npm or yarn> install
 <npm or yarn> start
 ```

@@ -17,5 +17,5 @@ something does not fit the community code standards or any issues please
  
  #### Documentation:  
  
- - [backend]()
- - [frontend]()
+ - [backend](https://github.com/Messhias/Weather-App/tree/master/backend)
+ - [frontend](https://github.com/Messhias/Weather-App/tree/master/frontend)
