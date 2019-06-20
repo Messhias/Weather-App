@@ -1,0 +1,84 @@
+.add-page-container {
+    width: 100%;
+    text-transform: none;
+
+    .form-container {
+        display: inline-block;
+        text-align: left;
+        top: 90px;
+        position: absolute;
+        left: 35%;
+        width: 25%;
+
+        input {
+            color: $blue3;
+            width: 100%;
+            border: none;
+            border-bottom: 1px solid $blue2;
+            padding: 10px;
+            &:focus {
+                outline: none;
+            }
+
+        }
+
+        .suggestions-list {
+            position: relative;
+            top: -30px;
+            ul {
+                padding: 0;
+                li {
+                    list-style: none;
+                    color: $blue3;
+                    cursor: pointer;
+                }
+            }
+        }
+
+        .save-city-button {
+            float: right;
+
+            button {
+                border: none;
+                color: $blue4;
+                font-size: 16px;
+                font-weight: bolder;
+            }
+        }
+    }
+
+    .add-page-input {
+        svg {
+            position: relative;
+            right: -95%;
+            top: 55px;
+            path {
+                color: $blue3;
+            }
+        }
+    }
+}
+
+@media all and (min-width: 0px) and (max-width: 680px) {
+    .add-page-container {
+
+        .form-container {
+            display: inline-block;
+            left: 0;
+            right: 0;
+            text-align: left;
+            position: absolute;
+            width: 85%;
+            padding:20px;
+            input {
+                width: 90%;
+            }
+            svg {
+                position: relative;
+                right: -85%;
+                top: 55px;
+            }
+
+        }
+    }
+}

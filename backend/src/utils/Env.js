@@ -1,4 +1,4 @@
-const server = "https://samples.openweathermap.org/data/2.5/forecast";
+const server = "http://api.openweathermap.org/data/2.5";
 
 /**
  * Returns the dev ser constant.

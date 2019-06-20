@@ -8,17 +8,28 @@ HomeRouter.use(cors());
 HomeRouter.use(express.json());
 
 // importing the custom functions.
-import {verifyJWT, jwt} from "../utils/JWT";
+import {verifyJWT } from "../utils/JWT";
+import {__construct} from "../utils/initApp";
 
-// retrieving the AppStore
-import {getCountriesList} from '../controllers/Home';
-
-
+const { Client } = require('pg');
+const client = new Client({
+    host: process.env.POSTGRES_HOST,
+    database: "benestudio",
+    password: "benestudio",
+    user: "benestudio",
+});
+client.connect();
 
 // Proxy request
-HomeRouter.get('/home', (request, response, next) => {
-// HomeRouter.get('/home', verifyJWT, (request, response, next) => {
-    response.status(200).send(getCountriesList())
+// HomeRouter.get('/home', (request, response, next) => {
+HomeRouter.get('/home', verifyJWT, (request, response, next) => {
+    const query = "select * from my_locations";
+    client.query(query)
+        .then(res => {
+            response.status(200).send(res.rows);
+        });
 });
+
+__construct();
 
 module.exports = HomeRouter;

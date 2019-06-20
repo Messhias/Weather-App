@@ -4,9 +4,6 @@ import Axios from 'axios';
 import { getServer } from './Env';
 import {getToken} from "./Functions";
 
-// getting app store.
-import AppStore from '../stores/AppStore';
-
 /**
  * Options for request.
  *

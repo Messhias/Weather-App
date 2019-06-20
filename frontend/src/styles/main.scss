@@ -5,7 +5,12 @@
 
 // importing the styles
 @import "login/main";
+@import "weather/info";
 @import "home/main";
+@import "location/main";
+
+// weather icons
+@import "~weather-icons/css/weather-icons.min.css";
 
 * {
     background: $background;
@@ -26,6 +31,22 @@
     .page-not-found {
         p {
             color: $blue3;
+        }
+    }
+
+    .back-button {
+        position: absolute;
+        top: 5%;
+        left: 5%;
+        a {
+            text-decoration: none;
+            font-weight: bolder;
+            font-size: 1.5em;
+        }
+        svg {
+            path {
+                color: $blue4;
+            }
         }
     }
 }

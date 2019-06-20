@@ -1,8 +1,5 @@
 import React from 'react';
 
-// app store
-import AppStore from '../../stores/AppStore';
-
 // font awesome icons
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faPlus} from "@fortawesome/free-solid-svg-icons/faPlus";
@@ -12,9 +9,17 @@ import HomeRequest from '../../request/User/Home';
 
 // nav link to routes import
 import {NavLink} from "react-router-dom";
+import {getStoredUser} from "../../utils/Functions";
 
-
+/**
+ * Default class signature.
+ *
+ * Home page class, that responsible to show my cities list.
+ */
 export default class Home extends React.Component {
+    /**
+     * @param props
+     */
     constructor(props) {
         super(props);
         this.state = {
@@ -23,20 +28,32 @@ export default class Home extends React.Component {
         };
     }
 
+    /**
+     * Default react life cycle function.
+     */
     componentWillMount() {
-        if (AppStore.getUser() === null) this.props.history.push("/");
+        if (!getStoredUser()) this.props.history.push("/");
         HomeRequest()
             .then(response => {
                 const { status = 500 } = response;
                 if (status === 200) {
                     const { data = [] } = response;
-                    this.setState({ ...data });
+                    this.setState({ myLocations: data });
                 }
             })
-            .catch(error => console.error(error));
+            .catch(error => {
+                if (!error.response.data.auth) {
+                    this.props.history.push("/");
+                }
+            });
     }
 
-    _renderMyCurrentLocations(myLocations = []) {
+    /**
+     * @param myLocations
+     * @return {Array}
+     * @private
+     */
+    static _renderMyCurrentLocations(myLocations = []) {
         const view = [];
         if (myLocations.length > 0) {
             view.push(myLocations.map(location =>
@@ -57,7 +74,7 @@ export default class Home extends React.Component {
 
     render() {
         const { myLocations = [] } = this.state,
-            locations = this._renderMyCurrentLocations(myLocations);
+            locations = Home._renderMyCurrentLocations(myLocations);
 
         return (
             <div

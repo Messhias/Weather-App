@@ -1,0 +1,91 @@
+.weather-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    min-height: 100vh;
+    text-transform: uppercase;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -moz-flex;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-justify-content: space-around;
+    -webkit-flex-flow: row wrap;
+    -webkit-align-items: stretch;
+    width: 100%;
+
+    .description-row {
+        font-size: 2em;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
+
+    .row {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+    .column {
+        display: flex;
+        flex-direction: column;
+        flex-basis: 100%;
+        flex: 1;
+        padding: 20px;
+        flex-grow: 3;
+    }
+
+    .weather-icon {
+        color: $blue4;
+    }
+
+    .blue-highlight {
+        color: $blue3;
+        text-transform: none;
+    }
+
+    .weather-description {
+        @extend .weather-icon;
+        font-size: 11px;
+    }
+
+    .sun-stages {
+        width: 100%;
+        font-size: 1em !important;
+        .weather-sys-info {
+            color: $blue4;
+            font-size: 0.6em;
+            line-height: 2;
+            margin-left: 10px;
+        }
+        .wi-sunrise, .wi-sunset {
+            font-size: 20px;
+            line-height: 2;
+            margin-left: -5px;
+        }
+    }
+}
+
+@media all and (min-width:0px) and (max-width: 680px) {
+    .weather-info {
+        .row {
+            flex-direction: column;
+
+            .column{
+                .middle-row {
+                    order: 1;
+                }
+                .weather-info {
+                    order: 2;
+                }
+            }
+
+        }
+    }
+}

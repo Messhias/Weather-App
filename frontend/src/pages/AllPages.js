@@ -1,5 +1,6 @@
 import NotFound from './NotFound';
 import User from './User/AllPages';
+import Location from './Location/AllPages';
 
 /**
  * Exporting as default all the pages into single contained component.
@@ -8,5 +9,6 @@ import User from './User/AllPages';
  */
 export default {
     NotFound,
-    User
+    User,
+    Location,
 }

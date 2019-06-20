@@ -9,9 +9,7 @@ UserRouter.use(express.json());
 
 // importing the custom functions.
 import { jwt } from "../utils/JWT";
-
-// retrieving the AppStore
-import AppStore from '../store/AppStore';
+import {__construct} from "../utils/initApp";
 
 /**
  * Login route
@@ -19,14 +17,11 @@ import AppStore from '../store/AppStore';
  * @return mixed
  */
 UserRouter.route("/login").post(function(request, response){
-    console.log(request.body);
-
     if (request.body) {
         if(request.body.email === 'jobs@benestudio.io' && request.body.password === '123'){
             //auth ok
             const id = 1; // user id
-            const token = jwt.sign({ id }, process.env.SECRET, {expiresIn: 300 });
-            AppStore.setUser({ auth: true, token: token });
+            const token = jwt.sign({ id }, process.env.SECRET, {expiresIn: 3000 });
             response.status(200).send({ auth: true, token: token });
         }
     } else {
@@ -35,15 +30,15 @@ UserRouter.route("/login").post(function(request, response){
     response.status(401).send();
 });
 
-
 /**
  * Logout route.
  *
  * @return mixed
  */
 UserRouter.get('/logout', function(request, response) {
-    AppStore.setUser(null);
     response.status(200).send({ auth: false, token: null });
 });
+
+__construct();
 
 module.exports = UserRouter;

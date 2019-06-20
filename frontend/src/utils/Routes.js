@@ -17,6 +17,8 @@ function makeRoutes() {
         "/login": Pages.User.Login,
         "/logout": Pages.User.Logout,
         "/home": Pages.User.Home,
+        "/info/:city/:country": Pages.Location.Info,
+        "/add-location": Pages.Location.Add,
     };
 
     return Object.keys(paths).map(path => {

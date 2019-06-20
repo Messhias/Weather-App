@@ -47,3 +47,7 @@ export function clearStorage() {
 export function getToken() {
     return AppStore.getUser() ? AppStore.getUser().token : getStoredUser().token;
 }
+
+export function getTemperature(number) {
+    return parseInt(number) / 10;
+}

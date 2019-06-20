@@ -50,15 +50,19 @@ class Form extends React.Component {
                             const { auth = false } = data;
 
                             if (auth) {
+                                eraseStorageUser();
+                                storageUser(data);
                                 AppStore.setUser(data);
 
                                 // uncomment the lines bellow if you want to add the user data to the localStorage.
-                                eraseStorageUser();
-                                storageUser(data);
-                                AppStore.setPage("home");
+                                AppStore.setPage("/home");
                                 this.props.history.push('home');
                             }
                         }
+                    } else {
+                        eraseStorageUser();
+                        AppStore.setUser(null);
+                        this.props.history.push("/");
                     }
                 })
                 .catch(error => console.error(error));
