@@ -11,6 +11,7 @@ import weatherIcon from '../../utils/icons';
 // font awesome icons
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faChevronLeft} from "@fortawesome/free-solid-svg-icons/faChevronLeft";
+import DatePrototype from "../../utils/DatePrototype";
 
 /**
  * Class responsible to track the icons data.
@@ -146,9 +147,9 @@ export default class Info extends React.Component {
             icon = "",
             city = "",
             weather_description = "",
-            current_time = new Date(),
-            sunrise = new Date(),
-            sunset = new Date(),
+            current_time = new DatePrototype(),
+            sunrise = new DatePrototype(),
+            sunset = new DatePrototype(),
             temperature = 0,
         } = this.state;
 
@@ -191,13 +192,13 @@ export default class Info extends React.Component {
                         <div className={'row'}>
                             <div className={'weather-sys-info'}>
                                 <i className={"wi wi-sunrise"}/>
-                                {`${sunrise.getHours()}:${sunrise.getMinutes()}`}
+                                {`${sunrise.format("H:m")}`}
                             </div>
                         </div>
                         <div className={'row'}>
                             <div className={'weather-sys-info'}>
                                 <i className={"wi wi-sunset"}/>{" "}
-                                {`${sunset.getHours()}:${sunset.getMinutes()}`}
+                                {`${sunset.format("H:m")}`}
                             </div>
                         </div>
                     </div>
