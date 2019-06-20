@@ -55,7 +55,7 @@ function fillCountriesList() {
 
                     if (data.length !== result.length) {
                         data.forEach(d => {
-                            const check = "select * from countries_list where country = $1 and capital = $2"
+                            const check = "select * from countries_list where country = $1 and capital = $2";
                             const values = [`${d.name}`, `${d.capital}`];
                             clientConstructor.query(check, values).
                                 then(result => {
@@ -93,10 +93,18 @@ function fillLocationData() {
                                 if (rows.length === 0) {
                                     query = "insert into locations_data (city, country, info) " +
                                         " values ($1, $2, $3)";
-                                    clientConstructor.query(query, [`${r.city}`, `${r.country}`, `${JSON.stringify(data)}`]);
+                                    clientConstructor.query(query, [
+                                        `${r.city}`,
+                                        `${r.country}`,
+                                        `${JSON.stringify(data)}`
+                                    ]);
                                 } else {
-                                    query = "update locations_data set info = $1";
-                                    clientConstructor.query(query, [`${JSON.stringify(data)}`]);
+                                    query = "update locations_data set info = $1 where country=$2 and city=$3";
+                                    clientConstructor.query(query, [
+                                        `${JSON.stringify(data)}`,
+                                        `${r.country}`,
+                                        `${r.city}`
+                                    ]);
                                 }
                             })
                     })
