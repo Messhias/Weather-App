@@ -19,3 +19,17 @@ something does not fit the community code standards or any issues please
  
  - [backend](https://github.com/Messhias/Weather-App/tree/master/backend)
  - [frontend](https://github.com/Messhias/Weather-App/tree/master/frontend)
+ 
+ 
+ # Screen shots
+ 
+ ![screen 1](https://github.com/Messhias/Weather-App/blob/master/s1.png "screen shot")
+
+ ![screen 1](https://github.com/Messhias/Weather-App/blob/master/s2.png "screen shot")
+ 
+ ![screen 1](https://github.com/Messhias/Weather-App/blob/master/s3.png "screen shot")
+
+ ![screen 1](https://github.com/Messhias/Weather-App/blob/master/s4.png "screen shot")
+ 
+ ![screen 1](https://github.com/Messhias/Weather-App/blob/master/s5.png "screen shot")
+ 
