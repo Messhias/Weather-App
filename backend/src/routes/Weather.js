@@ -1,7 +1,6 @@
 import {__construct} from "../utils/initApp";
 
 const WeatherRouter = express();
-const { Client } = require('pg');
 
 import express from "express";
 import cors from 'cors';
