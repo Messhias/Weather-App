@@ -1,4 +1,4 @@
-const server = "http://localhost:3000/";
+const server = "https://immense-reef-23498.herokuapp.com/";
 
 /**
  * Returns the dev ser constant.

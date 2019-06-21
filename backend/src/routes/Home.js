@@ -13,10 +13,10 @@ import {__construct} from "../utils/initApp";
 
 const { Client } = require('pg');
 const client = new Client({
-    host: "ec2-54-235-104-136.compute-1.amazonaws.com",
-    database: "d48g6qmc3oadt7",
-    password: "c0cf6f4bbda0673b7ad0d1e7ccb302f0024267836d2c0866073ea715b43a8116",
-    user: "vtzgyqdtpsmotu",
+    host: "ec2-23-21-186-85.compute-1.amazonaws.com",
+    database: "dfp4d40glbpd2f",
+    password: "435c87d3d3c6eeca55c10d3914f3a514f867eac38ba5fb3830fe180fc1e20c2d",
+    user: "uscomshhpttkvk",
 });
 client.connect();
 
