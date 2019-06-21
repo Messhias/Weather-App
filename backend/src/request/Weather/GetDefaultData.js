@@ -7,5 +7,5 @@ import Request from '../../utils/Request';
  * @return {Promise<AxiosResponse<T>>}
  */
 export default (queryObject = []) => {
-    return Request.get(`weather?q=${queryObject.city},${queryObject.country}&appid=${process.env.APP_ID}`);
+    return Request.get(`?q=${queryObject.city},${queryObject.country}&appid=${process.env.APP_ID}`);
 };
