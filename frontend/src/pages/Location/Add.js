@@ -148,7 +148,19 @@ export default class Add extends React.Component {
 
         if (countries.length === 0) {
             return  (
-                <div>
+                <div
+                    className={"add-page-container"}
+                >
+
+                    <div
+                        className={'back-button'}
+                    >
+                        <NavLink
+                            to={"/home"}
+                        >
+                            <FontAwesomeIcon icon={faChevronLeft} />
+                        </NavLink>
+                    </div>
                     Loading the view...
                 </div>
             );
