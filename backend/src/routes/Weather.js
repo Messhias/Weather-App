@@ -29,7 +29,10 @@ WeatherRouter.post('/weather', verifyJWT, (request, response, next) => {
     const query = "select * from locations_data where country = $1 and city = $2 limit 1";
     client.query(query, [`${request.body.country}`, `${request.body.city}`])
         .then(res => response.status(200).send(res.rows[0]))
-        .catch(e => console.error(e));
+        .catch(error => {
+            response.status(500).send(error);
+            console.error(error);
+        });
 });
 
 module.exports = WeatherRouter;

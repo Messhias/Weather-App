@@ -29,6 +29,10 @@ CountriesRouter.get('/countries', verifyJWT, (request, response, next) => {
         .then(res => {
             __construct();
             response.status(200).send(res.rows);
+        })
+        .catch(error => {
+            response.status(500).send(error);
+            console.error(error);
         });
 });
 

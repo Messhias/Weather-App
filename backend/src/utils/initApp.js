@@ -71,7 +71,7 @@ function fillCountriesList() {
 /**
  * Fill my locations data in database or update it.
  */
-function fillLocationData() {
+export function fillLocationData() {
     let query = "select * from my_locations";
     clientConstructor.query(query, [], (error, res) => {
         if (res.rows.length > 0) {

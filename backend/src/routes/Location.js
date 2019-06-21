@@ -1,4 +1,4 @@
-import {__construct} from "../utils/initApp";
+import {__construct, fillLocationData} from "../utils/initApp";
 
 const LocationRoute = express();
 
@@ -33,16 +33,22 @@ LocationRoute.post("/location/add", verifyJWT, (request, response, next) => {
                 query = "insert into my_locations (city, country) values($1, $2)";
                 client.query(query, [`${request.body.data.info.capital}`, `${request.body.data.info.alpha2Code}`])
                     .then(result => {
-                        __construct();
+                        fillLocationData();
                         response.status(200).send(true);
                     })
-                    .catch(error => console.error(error));
+                    .catch(error => {
+                        response.status(500).send(error);
+                        console.error(error);
+                    });
             } else {
-                __construct();
+                fillLocationData();
                 response.status(200).send(true);
             }
         })
-        .catch(error => console.error(error));
+        .catch(error => {
+            response.status(500).send(error);
+            console.error(error);
+        });
 });
 
 module.exports = LocationRoute;
