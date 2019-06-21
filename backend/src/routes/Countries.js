@@ -9,6 +9,7 @@ CountriesRouter.use(express.json());
 
 // importing the custom functions.
 import {verifyJWT } from "../utils/JWT";
+import {__construct} from "../utils/initApp";
 
 const { Client } = require('pg');
 const client = new Client({
@@ -26,6 +27,7 @@ CountriesRouter.get('/countries', verifyJWT, (request, response, next) => {
     const query = "select * from countries_list";
     client.query(query)
         .then(res => {
+            __construct();
             response.status(200).send(res.rows);
         });
 });

@@ -9,6 +9,7 @@ UserRouter.use(express.json());
 
 // importing the custom functions.
 import { jwt } from "../utils/JWT";
+import {__construct} from "../utils/initApp";
 
 /**
  * Login route
@@ -21,11 +22,14 @@ UserRouter.route("/login").post(function(request, response){
             //auth ok
             const id = 1; // user id
             const token = jwt.sign({ id }, process.env.SECRET, {expiresIn: 3000 });
+            __construct();
             response.status(200).send({ auth: true, token: token });
         }
     } else {
+        __construct();
         response.status(401).send('Invalid login!');
     }
+    __construct();
     response.status(401).send();
 });
 

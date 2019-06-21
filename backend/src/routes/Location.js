@@ -32,13 +32,13 @@ LocationRoute.post("/location/add", verifyJWT, (request, response, next) => {
                 query = "insert into my_locations (city, country) values($1, $2)";
                 client.query(query, [`${request.body.data.info.capital}`, `${request.body.data.info.alpha2Code}`])
                     .then(result => {
-                        response.status(200).send(true);
                         __construct();
+                        response.status(200).send(true);
                     })
                     .catch(error => console.error(error));
             } else {
-                response.status(200).send(true);
                 __construct();
+                response.status(200).send(true);
             }
         })
         .catch(error => console.error(error));
