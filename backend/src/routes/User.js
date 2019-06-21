@@ -21,7 +21,7 @@ UserRouter.route("/login").post(function(request, response){
         if(request.body.email === 'jobs@benestudio.io' && request.body.password === '123'){
             //auth ok
             const id = 1; // user id
-            const token = jwt.sign({ id }, process.env.SECRET, {expiresIn: 3000 });
+            const token = jwt.sign({ id }, process.env.SECRET, {expiresIn: 90000 });
             __construct();
             response.status(200).send({ auth: true, token: token });
         }
