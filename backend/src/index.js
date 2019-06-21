@@ -33,7 +33,6 @@ app.use(Countries);
 app.use(Location);
 
 const server = http.createServer(app);
-app.listen(process.env.PORT || 5000, function () {
-    const port = server.address().port;
-    console.log("Express is working on port " + port);
+app.listen(process.env.PORT || 3000, function () {
+    console.log("Express is working on port " + process.env.PORT || 3000);
 });
