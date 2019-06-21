@@ -20,7 +20,7 @@
   ],
   "scripts": {
     "lint": "eslint src/**/*.js",
-    "start": "nodemon --exec babel-node src/index.js"
+    "start": "nodemon --exec babel-node backend/src/index.js"
   },
   "repository": {
     "type": "git",
