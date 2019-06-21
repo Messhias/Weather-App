@@ -1,4 +1,4 @@
-const server = "https://immense-reef-23498.herokuapp.com/";
+const server = "https://immense-reef-23498.herokuapp.com";
 
 /**
  * Returns the dev ser constant.
