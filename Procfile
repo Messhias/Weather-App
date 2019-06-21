@@ -1,3 +1,3 @@
 // Procfile
 
-web: node backend/src/index.js
+web: node ./backend/src/index.js
