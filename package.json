@@ -20,7 +20,8 @@
   ],
   "scripts": {
     "lint": "eslint src/**/*.js",
-    "start": "nodemon --exec babel-node backend/src/index.js"
+    "start": "nodemon --exec babel-node backend/src/index.js",
+    "heroku-postbuild": "cd frontend && yarn && yarn run build"
   },
   "repository": {
     "type": "git",
