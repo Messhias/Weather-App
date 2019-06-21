@@ -9,7 +9,6 @@ UserRouter.use(express.json());
 
 // importing the custom functions.
 import { jwt } from "../utils/JWT";
-import {__construct} from "../utils/initApp";
 
 /**
  * Login route
@@ -38,7 +37,5 @@ UserRouter.route("/login").post(function(request, response){
 UserRouter.get('/logout', function(request, response) {
     response.status(200).send({ auth: false, token: null });
 });
-
-__construct();
 
 module.exports = UserRouter;

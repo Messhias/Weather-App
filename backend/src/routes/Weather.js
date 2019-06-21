@@ -1,5 +1,3 @@
-import {__construct} from "../utils/initApp";
-
 const WeatherRouter = express();
 const { Client } = require('pg');
 
@@ -27,7 +25,5 @@ WeatherRouter.post('/weather', verifyJWT, (request, response, next) => {
     client.query(query, [`${request.body.country}`, `${request.body.city}`])
         .then(res => response.status(200).send(res.rows[0]));
 });
-
-__construct();
 
 module.exports = WeatherRouter;

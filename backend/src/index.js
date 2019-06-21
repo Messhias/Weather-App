@@ -21,10 +21,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
-// constructing the application.
-__construct();
-
-
 // Proxy requests
 app.use(User);
 app.use(Home);
@@ -45,5 +41,7 @@ if (process.env.NODE_ENV === 'production') {
 
 const server = http.createServer(app);
 server.listen(process.env.PORT || 3000, function () {
+    // constructing the application.
+    __construct();
     console.log("Express is working on port " + process.env.PORT || 3000);
 });

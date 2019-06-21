@@ -44,6 +44,4 @@ LocationRoute.post("/location/add", verifyJWT, (request, response, next) => {
         .catch(error => console.error(error));
 });
 
-__construct();
-
 module.exports = LocationRoute;
