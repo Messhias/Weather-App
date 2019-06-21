@@ -53,7 +53,7 @@ export default class Add extends React.Component {
             .then(response => {
                 const { data = [] } = response;
                 if (data.length > 0) {
-                    this.setState({ countries: data});
+                    this.setState({ countries: data });
                 }
             })
             .catch(error => {
