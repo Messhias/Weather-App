@@ -49,26 +49,25 @@ function fillCountriesList() {
             if (status === 200) {
                 const { data = [] } = response;
                 if (data.length > 0) {
-                    data.forEach(d => {
-                        const check = "select * from countries_list where country = $1 and capital = $2";
-                        const values = [`${d.name}`, `${d.capital}`];
-                        clientConstructor.query(check, values).
-                        then(result => {
-                            if (result.rows.length === 0) {
-                                const insert = "insert into countries_list (country, capital, info) values ($1, $2, $3)";
-                                const values = [`${d.name}`, `${d.capital}`,`${JSON.stringify(d)}`];
-                                clientConstructor.query(insert, values);
-                            } else {
-                                const query = "update countries_list set info = $1 where country=$2 and city=$3";
-                                clientConstructor.query(query, [
-                                    `${JSON.stringify(data)}`,
-                                    `${r.country}`,
-                                    `${r.city}`
-                                ]);
-                            }
-                        })
-                            .catch(error => console.error(error));
-                    });
+                    let query = "select * from countries_list";
+                    const result = clientConstructor.query(query)
+                        .catch(error => console.error(error));
+
+                    if (data.length > result.length) {
+                        data.forEach(d => {
+                            const check = "select * from countries_list where country = $1 and capital = $2";
+                            const values = [`${d.name}`, `${d.capital}`];
+                            clientConstructor.query(check, values).
+                                then(result => {
+                                    if (result.rows.length === 0) {
+                                        const insert = "insert into countries_list (country, capital, info) values ($1, $2, $3)";
+                                        const values = [`${d.name}`, `${d.capital}`,`${JSON.stringify(d)}`];
+                                        clientConstructor.query(insert, values);
+                                    }
+                                })
+                                .catch(error => console.error(error));
+                        });
+                    }
                 }
             }
         })
@@ -80,38 +79,37 @@ function fillCountriesList() {
  */
 function fillLocationData() {
     let query = "select * from my_locations";
-    clientConstructor.query(query)
-        .then(res => {
-            if (res.rows.length > 0) {
-                res.rows.forEach(r => {
-                    Weather({city: r.city, country: r.country})
-                        .then(res => {
-                            const { data = [] } = res;
-                            query = "select * from locations_data where city = $1 and country = $2";
-                            clientConstructor.query(query, [`${r.city}`, `${r.country}`])
-                                .then(response => {
-                                    const { rows = [] } = response;
+    clientConstructor.query(query, [], (error, res) => {
+        if (res.rows.length > 0) {
+            res.rows.forEach(r => {
+                Weather({city: r.city, country: r.country})
+                    .then(res => {
+                        const { data = [] } = res;
+                        query = "select * from locations_data where city = $1 and country = $2";
+                        clientConstructor.query(query, [`${r.city}`, `${r.country}`])
+                            .then(response => {
+                                const { rows = [] } = response;
 
-                                    if (rows.length === 0) {
-                                        query = "insert into locations_data (city, country, info) " +
-                                            " values ($1, $2, $3)";
-                                        clientConstructor.query(query, [
-                                            `${r.city}`,
-                                            `${r.country}`,
-                                            `${JSON.stringify(data)}`
-                                        ]);
-                                    } else {
-                                        query = "update locations_data set info = $1 where country=$2 and city=$3";
-                                        clientConstructor.query(query, [
-                                            `${JSON.stringify(data)}`,
-                                            `${r.country}`,
-                                            `${r.city}`
-                                        ]);
-                                    }
-                                })
-                        })
-                        .catch(error => console.error(error));
-                });
-            }
-        })
+                                if (rows.length === 0) {
+                                    query = "insert into locations_data (city, country, info) " +
+                                        " values ($1, $2, $3)";
+                                    clientConstructor.query(query, [
+                                        `${r.city}`,
+                                        `${r.country}`,
+                                        `${JSON.stringify(data)}`
+                                    ]);
+                                } else {
+                                    query = "update locations_data set info = $1 where country=$2 and city=$3";
+                                    clientConstructor.query(query, [
+                                        `${JSON.stringify(data)}`,
+                                        `${r.country}`,
+                                        `${r.city}`
+                                    ]);
+                                }
+                            })
+                    })
+                    .catch(error => console.error(error));
+            });
+        }
+    })
 }
