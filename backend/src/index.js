@@ -38,10 +38,10 @@ if (process.env.NODE_ENV === 'production') {
         res.sendFile(path.resolve(__dirname, 'frontend', 'build', 'index.html'));
     });
 }
+// constructing the application.
+__construct();
 
 const server = http.createServer(app);
 server.listen(process.env.PORT || 3000, function () {
-    // constructing the application.
-    __construct();
     console.log("Express is working on port " + process.env.PORT || 3000);
 });
