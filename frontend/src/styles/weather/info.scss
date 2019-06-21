@@ -2,7 +2,6 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
     text-align: center;
     min-height: 100vh;
     text-transform: uppercase;
@@ -53,6 +52,8 @@
     .weather-description {
         @extend .weather-icon;
         font-size: 11px;
+        margin-top: 20px;
+        font-weight: bolder;
     }
 
     .sun-stages {
