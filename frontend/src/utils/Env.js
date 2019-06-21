@@ -1,5 +1,5 @@
 // const server = "https://immense-reef-23498.herokuapp.com";
-const server = "/api/";
+const server = "/";
 /**
  * Returns the dev ser constant.
  *
