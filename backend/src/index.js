@@ -32,7 +32,18 @@ app.use(Weather);
 app.use(Countries);
 app.use(Location);
 
+if (process.env.NODE_ENV === 'production') {
+    // Exprees will serve up production assets
+    app.use(express.static('frontend/build'));
+
+    // Express serve up index.html file if it doesn't recognize route
+    const path = require('path');
+    app.get('*', (req, res) => {
+        res.sendFile(path.resolve(__dirname, 'frontend', 'build', 'index.html'));
+    });
+}
+
 const server = http.createServer(app);
-app.listen(process.env.PORT || 3000, function () {
+server.listen(process.env.PORT || 3000, function () {
     console.log("Express is working on port " + process.env.PORT || 3000);
 });
