@@ -14,6 +14,8 @@ something does not fit the community code standards or any issues please
  
  If do that it'll help me a lot as programmer and person to get better than now.
  
+ Example running: https://immense-reef-23498.herokuapp.com/#/
+ 
  
  #### Documentation:  
  
