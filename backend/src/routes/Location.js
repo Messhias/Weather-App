@@ -1,7 +1,6 @@
 import {__construct} from "../utils/initApp";
 
 const LocationRoute = express();
-const { Client } = require('pg');
 
 import express from "express";
 import cors from 'cors';
@@ -13,13 +12,15 @@ LocationRoute.use(express.json());
 
 // importing the custom functions.
 import {verifyJWT } from "../utils/JWT";
-const client = new Client({
+
+const { Client } = require('pg');
+const clientConstructor = new Client({
     host: "ec2-23-21-186-85.compute-1.amazonaws.com",
     database: "dfp4d40glbpd2f",
     password: "435c87d3d3c6eeca55c10d3914f3a514f867eac38ba5fb3830fe180fc1e20c2d",
     user: "uscomshhpttkvk",
 });
-client.connect();
+clientConstructor.connect();
 
 /**
  * Add new locations.

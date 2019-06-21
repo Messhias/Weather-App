@@ -13,13 +13,14 @@ WeatherRouter.use(express.json());
 
 // importing the custom functions.
 import {verifyJWT } from "../utils/JWT";
-const client = new Client({
+
+const clientConstructor = new Client({
     host: "ec2-23-21-186-85.compute-1.amazonaws.com",
     database: "dfp4d40glbpd2f",
     password: "435c87d3d3c6eeca55c10d3914f3a514f867eac38ba5fb3830fe180fc1e20c2d",
     user: "uscomshhpttkvk",
 });
-client.connect();
+clientConstructor.connect();
 
 // Proxy request
 WeatherRouter.post('/weather', verifyJWT, (request, response, next) => {
